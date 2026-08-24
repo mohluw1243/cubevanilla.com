@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+	<!DOCTYPE html>
 <html lang="ru">
 <head>
 <meta charset="UTF-8">
@@ -24,10 +24,15 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: white;
-    font-size: 30px;
-    font-weight: bold;
-    text-shadow: 1px 1px 2px #000;
+}
+
+/* логотип */
+.header img {
+    max-height: 762px;
+    max-width: 100%;
+    width: 480px;
+    height: auto;
+    display: block;
 }
 
 /* nav */
@@ -59,9 +64,17 @@ body {
     align-items: flex-start;
 }
 
-.left { width: 220px; }
-.main { width: 700px; }
-.right { width: 250px; }
+.left {
+    width: 220px;
+}
+
+.main {
+    width: 700px;
+}
+
+.right {
+    width: 250px;
+}
 
 /* blocks */
 .block {
@@ -101,7 +114,9 @@ body {
 
 <body>
 
-<div class="header">𝘾𝙪𝙗𝙚𝙑𝙖𝙣𝙞𝙡𝙡𝙖</div>
+<div class="header">
+    <img src="logo.png" alt="CubeVanilla">
+</div>
 
 <div class="nav">
     <a href="index.html">Главная</a>
@@ -137,6 +152,8 @@ CubeVanilla — анархический Minecraft сервер без прив�
         <h3>Статистика</h3>
         <div class="block-content">
             <iframe src="https://minecraftrating.ru/server_chart/276158/" height="300"></iframe>
+                    </iframe>
+            <script src="https://mineserv.top/widgets.js"></script>
         </div>
     </div>
 
@@ -164,7 +181,9 @@ CubeVanilla — анархический Minecraft сервер без прив�
         <h3>Visitors</h3>
         <div class="block-content" style="text-align:center;">
             <a href="https://info.flagcounter.com/Y6t2">
-                <a href="https://info.flagcounter.com/Y6t2"><img src="https://s01.flagcounter.com/count/Y6t2/bg_EBF9FF/txt_000000/border_FFFFFF/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/" alt="Free counters!" border="0"></a>
+                <img src="https://s01.flagcounter.com/count/Y6t2/bg_EBF9FF/txt_000000/border_FFFFFF/columns_2/maxflags_10/viewers_0/labels_1/pageviews_1/flags_0/percent_0/"
+                     alt="Free counters!"
+                     border="0">
             </a>
         </div>
     </div>
@@ -177,6 +196,7 @@ CubeVanilla — анархический Minecraft сервер без прив�
 fetch("https://api.mcsrvstat.us/3/5.83.140.251:25702")
 .then(res => res.json())
 .then(data => {
+
     const status = document.getElementById("server-status");
     const list = document.getElementById("player-list");
 
@@ -191,18 +211,25 @@ fetch("https://api.mcsrvstat.us/3/5.83.140.251:25702")
         "Версия: " + data.version;
 
     if (data.players.list && data.players.list.length > 0) {
+
         let html = "<b>Игроки:</b><br>";
+
         data.players.list.forEach(p => {
             html += "• " + p.name + "<br>";
         });
+
         list.innerHTML = html;
+
     } else {
         list.innerHTML = "Игроков нет";
     }
+
 })
 .catch(() => {
+
     document.getElementById("server-status").innerHTML =
         "<b style='color:red;'>Ошибка API</b>";
+
 });
 </script>
 
